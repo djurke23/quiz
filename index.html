@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Quiz Program</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .quiz-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>General Knowledge Quiz</h2>
+        
+        <!-- Question 1 -->
+        <div class="question">
+            <label>1. What is the capital of France?</label>
+            <input type="radio" name="q1" value="Paris"> Paris<br>
+            <input type="radio" name="q1" value="London"> London<br>
+            <input type="radio" name="q1" value="Rome"> Rome<br>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question">
+            <label>2. What is 2 + 2?</label>
+            <input type="radio" name="q2" value="3"> 3<br>
+            <input type="radio" name="q2" value="4"> 4<br>
+            <input type="radio" name="q2" value="5"> 5<br>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question">
+            <label>3. Who wrote 'Hamlet'?</label>
+            <input type="radio" name="q3" value="Shakespeare"> Shakespeare<br>
+            <input type="radio" name="q3" value="Hemingway"> Hemingway<br>
+            <input type="radio" name="q3" value="Tolkien"> Tolkien<br>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question">
+            <label>4. What is the largest planet in our solar system?</label>
+            <input type="radio" name="q4" value="Jupiter"> Jupiter<br>
+            <input type="radio" name="q4" value="Saturn"> Saturn<br>
+            <input type="radio" name="q4" value="Earth"> Earth<br>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question">
+            <label>5. Which element has the chemical symbol 'O'?</label>
+            <input type="radio" name="q5" value="Oxygen"> Oxygen<br>
+            <input type="radio" name="q5" value="Gold"> Gold<br>
+            <input type="radio" name="q5" value="Iron"> Iron<br>
+        </div>
+
+        <button onclick="submitQuiz()">Submit</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function submitQuiz() {
+            let score = 0;
+
+            // Check answers
+            let q1 = document.querySelector('input[name="q1"]:checked');
+            let q2 = document.querySelector('input[name="q2"]:checked');
+            let q3 = document.querySelector('input[name="q3"]:checked');
+            let q4 = document.querySelector('input[name="q4"]:checked');
+            let q5 = document.querySelector('input[name="q5"]:checked');
+
+            // Check if answers are correct
+            if (q1 && q1.value === "Paris") score++;
+            if (q2 && q2.value === "4") score++;
+            if (q3 && q3.value === "Shakespeare") score++;
+            if (q4 && q4.value === "Jupiter") score++;
+            if (q5 && q5.value === "Oxygen") score++;
+
+            // Display result with color feedback
+            let resultText = `You got ${score} out of 5 correct!`;
+            let resultElement = document.getElementById('result');
+            resultElement.innerText = resultText;
+
+            if (score >= 4) {
+                resultElement.classList.remove('incorrect');
+                resultElement.classList.add('correct');
+                resultElement.style.backgroundColor = '#d4edda';  // Light green background
+            } else {
+                resultElement.classList.remove('correct');
+                resultElement.classList.add('incorrect');
+                resultElement.style.backgroundColor = '#f8d7da';  // Light red background
+            }
+        }
+    </script>
+</body>
+</html>
